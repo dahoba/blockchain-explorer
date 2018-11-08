@@ -3,7 +3,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-FROM node:8.11.3-alpine
+FROM node:8-alpine
 
 # default values pf environment variables
 # that are used inside container
@@ -30,6 +30,7 @@ COPY . $EXPLORER_APP_PATH
 # current dependencies are: python, make, g++
 
 RUN apk add --no-cache --virtual npm-deps python make g++ && \
+    apk add --no-cache findutils && \
     python -m ensurepip && \
     rm -r /usr/lib/python*/ensurepip && \
     pip install --upgrade pip setuptools && \
