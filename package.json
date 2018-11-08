@@ -64,8 +64,10 @@
   },
   "scripts": {
     "docker_build": "docker build --squash -t $npm_package_name .",
-    "docker_push": "docker push ${DOCKER_REGISTRY}/$npm_package_name:$npm_package_version",
+    "docker_build_gitlab": "docker build --squash -t ${DOCKER_REGISTRY}/$npm_package_name .",
+    "docker_push": "docker push ${DOCKER_REGISTRY}/$npm_package_name",
     "docker_tag": "docker tag $npm_package_name ${DOCKER_REGISTRY}/$npm_package_name:$npm_package_version",
+    "docker_tag_gitlab": "docker tag ${DOCKER_REGISTRY}/$npm_package_name ${DOCKER_REGISTRY}/$npm_package_name:$npm_package_version",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "precommit": "lint-staged"
