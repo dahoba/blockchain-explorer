@@ -245,7 +245,7 @@ From new terminal(If Sync Process in Standalone).
 
 - If the Hyperledger Explorer was used previously in your browser be sure to clear the cache before relaunching.
 
-<a name="Run-Hyperledger-Explorer-using-Docker"/>
+<a name="Run-Hyperledger-Explorer-using-Docker"></a>
 
 ## Run Hyperledger Explorer using Docker
 
@@ -261,8 +261,8 @@ There is also an automated deployment of the **Hyperledger Explorer** available 
 
 ## Docker
 
-* Hyperledger Explorer docker repository `https://hub.docker.com/r/hyperledger/explorer/`
-* Hyperledger Explorer PostgreSQL docker repository `https://hub.docker.com/r/hyperledger/explorer-db`
+* Hyperledger Explorer docker repository `https://cloud.docker.com/repository/docker/dahoba/blockchain-explorer`
+* Hyperledger Explorer PostgreSQL docker repository `https://cloud.docker.com/repository/docker/dahoba/blockchain-explorer-db`
 
 ### Steps to deploy using Docker
 
@@ -274,24 +274,34 @@ From new terminal.
 - Save your hyperledger network certs data under `examples/dockerConfig/crypto`.
 - Run the explorer pointing to previously created folder.
 
+Notes:
+ - `config.json` is the connection profile of the target blockchain network.
+ - files under `crypto` folder are as same as found under `crypto-config` of the hyperledger first-network samples.
+
 From new terminal.
 - `cd blockchain-explorer/`
-- `./deploy_explorer.sh dockerConfig`  (it will automatically deploy both database and frontend apps using Hyperledger Fabric network configuration stored under `examples/dockerConfig` folder)
+- `docker-compose up -d`  (it will automatically deploy both database and frontend apps using Hyperledger Fabric network configuration stored under `examples/dockerConfig` folder)
 
 Note: the example with additional information can be found at [examples/net1](./examples/net1) folder.
 
 ### Joining existing Docker network
-If the Blockchain network is deployed in the Docker, you may pass network name as second parameter to join that network
-(docker_network in the example below):
-- `./deploy_explorer.sh dockerConfig docker_network`
+
+If the Blockchain network is deployed in the Docker, you may change the network name in `docker-compose.yml` as code below to join that network. i.e.: to join the hyperledger-composer multi-org examples change to `net-byfn`
+
+```
+...
+  default:
+    external:
+      name: net_byfn
+```
 
 ### Steps to stop containers
-- `./deploy_explorer.sh --down`
+- `docker-compose stop`
 
-### Steps to remove containers and clean images
-- `./deploy_explorer.sh --clean`
+### Steps to remove containers
+- `docker-compose down`
 
-<a name="Hyperledger-Explorer-Swagger"/>
+<a name="Hyperledger-Explorer-Swagger"></a>
 
 ### NPM utility scripts to Dockerise application
 
