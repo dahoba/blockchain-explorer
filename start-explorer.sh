@@ -1,0 +1,1 @@
+node $EXPLORER_APP_PATH/main.js && tail -f /dev/null

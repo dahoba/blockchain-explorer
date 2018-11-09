@@ -25,7 +25,7 @@ WORKDIR $DEFAULT_WORKDIR
 
 # copy external data to container
 COPY . $EXPLORER_APP_PATH
-
+RUN chmod 777 $EXPLORER_APP_PATH/*.sh 
 # install required dependencies by NPM packages:
 # current dependencies are: python, make, g++
 

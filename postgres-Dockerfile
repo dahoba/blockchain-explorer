@@ -26,5 +26,4 @@ WORKDIR /opt
 COPY app/persistence/fabric/postgreSQL/db/explorerpg.sql 	/opt/explorerpg-sql
 COPY app/persistence/fabric/postgreSQL/db/updatepg.sql 	    /opt/updatepg-sql
 COPY app/persistence/fabric/postgreSQL/db/createdb.sh   	/docker-entrypoint-initdb.d/zzz_createdb.sh
-#COPY app/persistence/fabric/postgreSQL/db/processenv.js   	/docker-entrypoint-initdb.d/processenv.js
 COPY app/persistence/fabric/postgreSQL/db/processenv.js   	/opt/processenv.js

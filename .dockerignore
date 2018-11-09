@@ -1,2 +1,7 @@
 node_modules
 client/node_modules
+examples/
+release_notes/
+devenv/
+*.md
+*.rst

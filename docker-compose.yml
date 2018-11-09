@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  explorer-db:
+    image: dahoba/hyperledger-explorer-db
+    environment:
+      DATABASE_DATABASE: "fabricexplorer"
+      DATABASE_USERNAME: "hppoc"
+      DATABASE_PASSWORD: "password"
+    # volumes:
+    #   - ./explorer-db-data:/var/lib/postgresql/data
+  explorer:
+    image: dahoba/hyperledger-explorer
+    environment:
+      DATABASE_HOST: "explorer-db"
+      DATABASE_USERNAME: "hppoc"
+      DATABASE_PASSWD: "password"   
+    ports:
+      - "8090:8080"      
+    volumes: 
+      - ./examples/dockerConfig/config.json:/opt/explorer/app/platform/fabric/config.json
+      - ./examples/dockerConfig/crypto:/tmp/crypto
+    command: sh -c '/opt/explorer/wait-for.sh explorer-db:5432 -t 20 -- /opt/explorer/start-explorer.sh'
+    depends_on:
+      - explorer-db
+networks:
+  default:
+    external:
+      name: net_byfn
