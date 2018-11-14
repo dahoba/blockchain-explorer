@@ -2,7 +2,7 @@ version: '3'
 
 services:
   explorer-db:
-    image: dahoba/hyperledger-explorer-db
+    image: dahoba/blockchain-explorer-db
     environment:
       DATABASE_DATABASE: "fabricexplorer"
       DATABASE_USERNAME: "hppoc"
@@ -10,7 +10,7 @@ services:
     # volumes:
     #   - ./explorer-db-data:/var/lib/postgresql/data
   explorer:
-    image: dahoba/hyperledger-explorer
+    image: dahoba/blockchain-explorer
     environment:
       DATABASE_HOST: "explorer-db"
       DATABASE_USERNAME: "hppoc"
